@@ -23,7 +23,10 @@ export default class CachedHttpClient {
 
     await Promise.all(req.links.map(uri => result.resolve(uri)));
 
-    return { links: result.links };
+    return {
+      status: "success",
+      links: result.links
+    };
   }
 
 }
@@ -37,6 +40,7 @@ export default class CachedHttpClient {
  */
 interface Response {
   links: UriObjectMap;
+  status: string;
 }
 
 /**
@@ -55,4 +59,3 @@ interface Request {
   links: string[];
   headers: Headers;
 }
-

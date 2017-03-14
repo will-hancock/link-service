@@ -31,9 +31,10 @@ export default class KoaService {
   private async handler(ctx: Context, next) {
     if (ctx.request.path !== "/resolve") return;
 
+    // todo gzip
     ctx.body = await this.httpClient.get({
       links: JSON.parse(ctx.request.query.links),
-      headers: pick(ctx.headers, "X-TENANT", "user-agent", "accept", "accept-encoding")
+      headers: pick(ctx.headers, "X-AUTH-TOKEN", "X-ENV", "X-TENANT", "user-agent", "accept", "accept-encoding")
     });
   };
 

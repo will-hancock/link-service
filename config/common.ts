@@ -42,7 +42,7 @@ export default class Config {
     },
     "^\/route\/0-9]+": {
       name: "ride-service",
-      cacheConfig: { maxAge: DEFAULT_MAX_AGE, max: 500 }
+      cacheConfig: { maxAge: DEFAULT_MAX_AGE, max: 200 }
     }
 
   }
