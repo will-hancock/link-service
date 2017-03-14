@@ -34,26 +34,30 @@ Caching can be configured per URI type in the `config/[env].ts` file.
 ## How does it work
 
 ```
-                                      +----------------------------------------------+
-                                      |                                              | Y
-                                      |                                              |
-    +--------------------+    +-------v-------+    +------------------+    +---------+--------+    +-----------------+
-    |                    |    |               |    |                  | Y  |                  | N  |                 |
-+--->  Create Recursive  +---->  Resolve URI  +---->  Proxy has item  +---->  Item has nested +---->  Return result  |
-    |  Request Context   |    |               |    |  in cache        |    |  links inside it |    |                 |
-    |                    |    |               |    |                  |    |                  |    |                 |
-    +--------------------+    +---------------+    +--------+---------+    +---------+--------+    +-----------------+
-                                                            |                        ^
-                                                         N  |                        |
-                                                            v                        |
-                                                   +--------+---------+    +---------+--------+
-                                                   |                  |    |                  |
-                                                   |  Get using HTTP  +---->  Add result and  |
-                                                   |  Request         |    |  links to cache  |
-                                                   |                  |    |                  |
-                                                   +------------------+    +------------------+
+                                     +--------------------------------------------+
+                                     |                                            | Y
+                                     |                                            |
+    +--------------------+   +-------v-------+   +------------------+   +---------+--------+    +-----------------+
+    |                    |   |               |   |                  | Y |                  | N  |                 |
++--->  Create Recursive  +--->  Resolve URI  +--->  Proxy has item  +--->  Item has nested +---->  Return result  |
+    |  Request Context*  |   |               |   |     in cache     |   |  links inside it |    |                 |
+    |                    |   |               |   |                  |   |                  |    |                 |
+    +--------------------+   +---------------+   +--------+---------+   +---------^--------+    +-----------------+
+                                                          |                       |
+                                                       N  |                       |
+                                                          |                       |
+                                                 +--------v---------+   +---------+--------+
+                                                 |                  |   |                  |
+                                                 |  Get using HTTP  +--->  Add result and  |
+                                                 |      Request     |   |  links to cache  |
+                                                 |                  |   |                  |
+                                                 +------------------+   +------------------+
 
 ```
+
+\* Recursive Request Context is fancy language for an object that stores all the resolved links to be returned in the 
+response. 
+
 ## Build deb
 
 ```
@@ -66,14 +70,12 @@ Caching can be configured per URI type in the `config/[env].ts` file.
 
 ## TODO
 
-- gzipping
 - logging
 - build-deb
 - if property = "uri" don't resolve it
 - jenkins
-- tests
+- more tests
 - errors
-- documentation
 
 ## License
 

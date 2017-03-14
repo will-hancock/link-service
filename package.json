@@ -23,8 +23,10 @@
   "homepage": "https://github.com/assertis/link-service",
   "devDependencies": {
     "@types/chai": "^3.4.34",
+    "@types/chai-spies": "0.0.0",
     "@types/mocha": "^2.2.38",
     "chai": "^3.5.0",
+    "chai-spies": "^0.7.1",
     "mocha": "^3.2.0"
   },
   "dependencies": {
@@ -34,6 +36,8 @@
     "@types/request-promise": "^4.1.33",
     "bluebird": "^3.5.0",
     "koa": "^2.0.0-alpha.7",
+    "koa-compress": "^2.0.0",
+    "koa-response-time": "^2.0.0",
     "lru-cache": "^4.0.2",
     "memoized-class-decorator": "1.0.1",
     "request": "^2.79.0",

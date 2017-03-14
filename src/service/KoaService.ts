@@ -1,5 +1,7 @@
 
 import Koa = require("koa");
+import compress = require("koa-compress");
+import responseTime = require("koa-response-time");
 import Context = Koa.Context;
 import Middleware = Koa.Middleware;
 import CachedHttpClient from "../http/CachedHttpClient";
@@ -17,7 +19,10 @@ export default class KoaService {
   public start(): void {
     const app = new Koa();
 
+    app.use(responseTime());
+    app.use(compress());
     app.use(this.handler.bind(this));
+
     app.listen(this.koaPort);
   }
 

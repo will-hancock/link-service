@@ -24,7 +24,7 @@ export default class Config {
   public readonly koaPort = 9000;
 
   public readonly proxies = {
-    "^\/station\/[a-zA-Z0-9]+": {
+    "^\/station\/.+": {
       name: "ride-service",
       cacheConfig: { maxAge: DEFAULT_MAX_AGE, max: 4000 }
     },
@@ -40,7 +40,7 @@ export default class Config {
       name: "ride-service",
       cacheConfig: { maxAge: DEFAULT_MAX_AGE, max: 500 }
     },
-    "^\/route\/0-9]+": {
+    "^\/route\/[0-9]+": {
       name: "ride-service",
       cacheConfig: { maxAge: DEFAULT_MAX_AGE, max: 200 }
     }
