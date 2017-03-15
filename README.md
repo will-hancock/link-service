@@ -70,11 +70,9 @@ response.
 
 ## TODO
 
-- logging
 - build-deb
-- if property = "uri" don't resolve it
+- key and value blacklists (e.g. literal keys "uri" and regex values)
 - jenkins
-- more tests
 - errors
 
 ## License

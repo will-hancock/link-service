@@ -6,6 +6,7 @@ import * as request from "request-promise";
 import {Headers} from "../http/CachedHttpClient";
 import {UriObjectMap} from "../http/RecursiveHttpRequest";
 import {EventEmitter} from "events";
+import {logger} from "../service/Container";
 
 /**
  * The Proxy class resolves URIs with either a HTTP request or using it's local cache
@@ -41,7 +42,7 @@ export default class Proxy extends EventEmitter {
   }
 
   private async getViaHttp(uri: string, headers: Headers) {
-    console.log(`Sending request to ${this.baseUrl + uri}`);
+    logger.info(`Cache miss. Sending request to ${this.baseUrl + uri}`);
 
     const options = {
       uri: this.baseUrl + uri,
@@ -55,7 +56,7 @@ export default class Proxy extends EventEmitter {
       return await request(options)
     }
     catch (err) {
-      console.error(`Error sending request ${this.baseUrl + uri}\n${err.stack}`);
+      logger.error(`Error sending request ${this.baseUrl + uri}\n${err.stack}`);
     }
   }
 

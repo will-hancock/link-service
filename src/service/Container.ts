@@ -5,7 +5,8 @@ import KoaService from "./KoaService";
 import CachedHttpClient from "../http/CachedHttpClient";
 import ProxyGateway from "../proxy/ProxyGateway";
 import Proxy from "../proxy/Proxy";
-const LRU = require("lru-cache");
+import LRU = require("lru-cache");
+import winston = require("winston");
 import memoize = require("memoized-class-decorator");
 
 export default class Container {
@@ -46,3 +47,10 @@ export default class Container {
   }
 
 }
+
+export const logger = new winston.Logger({
+  levels: winston.config.syslog.levels,
+  colors: winston.config.syslog.colors
+});
+
+logger.add(winston.transports.Console);

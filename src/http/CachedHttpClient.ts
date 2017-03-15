@@ -2,6 +2,7 @@
 import RecursiveHttpRequest from "./RecursiveHttpRequest";
 import {UriObjectMap} from "./RecursiveHttpRequest";
 import ProxyGateway from "../proxy/ProxyGateway";
+import {logger} from "../service/Container";
 
 /**
  * The CachedHttpClient will send a RecursiveHttpRequest on to the ProxyGateway, waiting until every link has been
@@ -17,7 +18,7 @@ export default class CachedHttpClient {
    * Turn the given list of links into a fully resolved set of objects
    */
   public async get(req: Request): Promise<Response> {
-    console.log(req);
+    logger.debug(req);
 
     const result = new RecursiveHttpRequest(this.proxy, req.headers);
 
