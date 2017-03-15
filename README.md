@@ -22,7 +22,7 @@ npm start
 
 ## Usage
 
-The API is a single endpoing `resolve` that takes a `links` query. The `links` are an array of URIs to be resolved.
+The API is a single endpoint `resolve` that takes a `links` query. The `links` are an array of URIs to be resolved.
 
 ```
 curl "curl "http://localhost:9000/resolve?links=\[%22/station/1072%22,%22/ticket-type/SOS%22\]"
