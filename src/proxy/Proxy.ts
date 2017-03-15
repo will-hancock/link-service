@@ -5,17 +5,20 @@ import * as Bluebird from "bluebird";
 import * as request from "request-promise";
 import {Headers} from "../http/CachedHttpClient";
 import {UriObjectMap} from "../http/RecursiveHttpRequest";
+import {EventEmitter} from "events";
 
 /**
  * The Proxy class resolves URIs with either a HTTP request or using it's local cache
  */
-export default class Proxy {
+export default class Proxy extends EventEmitter {
 
   constructor(
     private readonly baseUrl: string,
     private readonly regex: RegExp,
     private readonly cache: LRU
-  ) {}
+  ) {
+    super();
+  }
 
   /**
    * This method checks that the given uri matches the regular expression for this proxy
@@ -64,12 +67,22 @@ export default class Proxy {
 
     if (links) {
       for (const linkUri in links) {
-        // todo, this might be the wrong cache, needs to bubble up to proxy gateway
-        this.cache.set(linkUri, links[linkUri]);
+        // bubble up the links we get to the gateway so they can be cached in the correct bucket
+        this.emit('item', linkUri, links[linkUri]);
       }
     }
 
     return result;
+  }
+
+  /**
+   * Add the given item to the proxies cache
+   *
+   * @param uri
+   * @param item
+   */
+  public cacheItem(uri: string, item: any) {
+    this.cache.set(uri, item);
   }
 
 }
