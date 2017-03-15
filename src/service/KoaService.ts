@@ -5,6 +5,8 @@ import responseTime = require("koa-response-time");
 import Context = Koa.Context;
 import Middleware = Koa.Middleware;
 import CachedHttpClient from "../http/CachedHttpClient";
+import {StatusCodeError} from "request-promise/errors";
+import {logger} from "./Container";
 
 export default class KoaService {
 
@@ -36,11 +38,26 @@ export default class KoaService {
   private async handler(ctx: Context, next) {
     if (ctx.request.path !== "/resolve") return;
 
-    // todo gzip
-    ctx.body = await this.httpClient.get({
-      links: JSON.parse(ctx.request.query.links),
-      headers: pick(ctx.headers, "X-AUTH-TOKEN", "X-ENV", "X-TENANT", "user-agent", "accept", "accept-encoding")
-    });
+    try {
+      ctx.body = await this.httpClient.get({
+        links: JSON.parse(ctx.request.query.links),
+        headers: pick(ctx.headers, "X-AUTH-TOKEN", "X-ENV", "X-TENANT", "user-agent", "accept", "accept-encoding")
+      });
+    }
+    catch (err) {
+      if (err instanceof StatusCodeError) {
+        logger.info(err);
+
+        ctx.body = err.error;
+        ctx.response.status = err.statusCode;
+      }
+      else {
+        logger.error(err);
+
+        ctx.body = err.message;
+        ctx.response.status = 500;
+      }
+    }
   };
 
 }

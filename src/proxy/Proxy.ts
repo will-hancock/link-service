@@ -52,12 +52,7 @@ export default class Proxy extends EventEmitter {
       transform: (body, response) => this.handleHttpResponse(body, response, uri)
     };
 
-    try {
-      return await request(options)
-    }
-    catch (err) {
-      logger.error(`Error sending request ${this.baseUrl + uri}\n${err.stack}`);
-    }
+    return request(options)
   }
 
   private handleHttpResponse(body: ServiceResponse, response: Response, uri: string) {

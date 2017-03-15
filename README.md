@@ -73,7 +73,6 @@ response.
 - build-deb
 - key and value blacklists (e.g. literal keys "uri" and regex values)
 - jenkins
-- errors
 
 ## License
 
