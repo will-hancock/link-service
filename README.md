@@ -58,12 +58,6 @@ Caching can be configured per URI type in the `config/[env].ts` file.
 \* Recursive Request Context is fancy language for an object that stores all the resolved links to be returned in the 
 response. 
 
-## Build deb
-
-```
-./script/build.sh
-```
-
 
 ## TODO
 
