@@ -8,13 +8,14 @@ import Proxy from "../proxy/Proxy";
 import LRU = require("lru-cache");
 import winston = require("winston");
 import memoize = require("memoized-class-decorator");
+import TestConfig from "../../config/test";
 
 export default class Container {
 
   @memoize
   public getConfig(): Config {
     switch (process.env.NODE_ENV) {
-      //case "production": return new ProductionConfig();
+      case "test": return new TestConfig();
       default: return new DevConfig();
     }
   }

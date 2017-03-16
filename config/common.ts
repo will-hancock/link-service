@@ -20,10 +20,10 @@ export type ProxyConfig = {
 
 export default class Config {
 
-  public readonly baseUrl = "http://$serviceName.local";
-  public readonly koaPort = 9000;
+  public baseUrl = "http://$serviceName.local";
+  public koaPort = 9000;
 
-  public readonly proxies = {
+  public proxies = {
     "^\/station\/.+": {
       name: "ride-service",
       cacheConfig: { maxAge: DEFAULT_MAX_AGE, max: 4000 }
