@@ -48,6 +48,7 @@ export default class Proxy extends EventEmitter {
       uri: this.baseUrl + uri,
       headers: headers,
       json: true,
+      gzip: true,
       transform2xxOnly: true,
       transform: (body, response) => this.handleHttpResponse(body, response, uri)
     };
