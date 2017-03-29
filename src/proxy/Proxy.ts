@@ -53,7 +53,7 @@ export class Proxy extends EventEmitter {
         return request(options);
     }
 
-    private handleHttpResponse(body: IServiceResponse, response: Response, uri: string) {
+    private handleHttpResponse(body: ServiceResponse, response: Response, uri: string) {
         const result = body.data;
         const links = body.links;
 
@@ -83,7 +83,7 @@ export class Proxy extends EventEmitter {
 
 }
 
-interface IServiceResponse {
+interface ServiceResponse {
     data: Object;
     links: UriObjectMap;
 }

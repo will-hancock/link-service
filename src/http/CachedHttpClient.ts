@@ -15,7 +15,7 @@ export class CachedHttpClient {
     /**
      * Turn the given list of links into a fully resolved set of objects
      */
-    public async get(req: IRequest): Promise<IResponse> {
+    public async get(req: Request): Promise<Response> {
         this.logger.debug(req);
 
         const result = new RecursiveHttpRequest(this.proxy, req.headers);
@@ -37,7 +37,7 @@ export class CachedHttpClient {
  *   "/station/1": { ... }
  * }
  */
-interface IResponse {
+interface Response {
     links: UriObjectMap;
     status: string;
 }
@@ -54,7 +54,7 @@ export type Headers = {
 /**
  * Request links and headers
  */
-interface IRequest {
+interface Request {
     links: string[];
     headers: Headers;
 }

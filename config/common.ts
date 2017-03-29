@@ -1,21 +1,21 @@
 const DEFAULT_MAX_AGE = 1000 * 60; // 60 seconds
 
-interface ICacheConfigItem {
+interface CacheConfigItem {
     maxAge: number;
     max: number;
 }
 
 export type CacheConfig = {
-    [key: string]: ICacheConfigItem;
+    [key: string]: CacheConfigItem;
 };
 
-interface IProxyConfigItem {
+interface ProxyConfigItem {
     name: string;
     cacheConfig: CacheConfig;
 }
 
 export type ProxyConfig = {
-    [uriRegex: string]: IProxyConfigItem;
+    [uriRegex: string]: ProxyConfigItem;
 };
 
 export default class Config {
