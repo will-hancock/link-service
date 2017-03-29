@@ -1,34 +1,32 @@
-
-import RecursiveHttpRequest from "./RecursiveHttpRequest";
-import {UriObjectMap} from "./RecursiveHttpRequest";
-import ProxyGateway from "../proxy/ProxyGateway";
-import {logger} from "../service/Container";
+import {RecursiveHttpRequest, UriObjectMap} from './RecursiveHttpRequest';
+import {ProxyGateway} from '../proxy';
+import {Logger} from '../logger';
 
 /**
  * The CachedHttpClient will send a RecursiveHttpRequest on to the ProxyGateway, waiting until every link has been
  * resolved before giving the response.
  */
-export default class CachedHttpClient {
+export class CachedHttpClient {
 
-  constructor(
-    private readonly proxy: ProxyGateway
-  ) {}
+    constructor(private readonly proxy: ProxyGateway,
+                private readonly logger: Logger) {
+    }
 
-  /**
-   * Turn the given list of links into a fully resolved set of objects
-   */
-  public async get(req: Request): Promise<Response> {
-    logger.debug(req);
+    /**
+     * Turn the given list of links into a fully resolved set of objects
+     */
+    public async get(req: IRequest): Promise<IResponse> {
+        this.logger.debug(req);
 
-    const result = new RecursiveHttpRequest(this.proxy, req.headers);
+        const result = new RecursiveHttpRequest(this.proxy, req.headers);
 
-    await Promise.all(req.links.map(uri => result.resolve(uri)));
+        await Promise.all(req.links.map(uri => result.resolve(uri)));
 
-    return {
-      status: "success",
-      links: result.links
-    };
-  }
+        return {
+            status: 'success',
+            links: result.links,
+        };
+    }
 
 }
 
@@ -39,9 +37,9 @@ export default class CachedHttpClient {
  *   "/station/1": { ... }
  * }
  */
-interface Response {
-  links: UriObjectMap;
-  status: string;
+interface IResponse {
+    links: UriObjectMap;
+    status: string;
 }
 
 /**
@@ -50,13 +48,13 @@ interface Response {
  * "X-TENANT": "genius"
  */
 export type Headers = {
-  [header: string]: string | number
+    [header: string]: string | number;
 };
 
 /**
  * Request links and headers
  */
-interface Request {
-  links: string[];
-  headers: Headers;
+interface IRequest {
+    links: string[];
+    headers: Headers;
 }

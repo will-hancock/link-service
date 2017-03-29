@@ -1,8 +1,6 @@
+import {logger} from './logger';
+import {Container} from './service';
 
-import Container from "./service/Container";
-
-const container = new Container();
-
-container
-  .getKoaService()
-  .start();
+(new Container(logger))
+    .getKoaService()
+    .start();
