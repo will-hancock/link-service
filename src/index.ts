@@ -1,8 +1,5 @@
+import {Container} from './service/Container';
 
-import Container from "./service/Container";
-
-const container = new Container();
-
-container
-  .getKoaService()
-  .start();
+new Container()
+    .getKoaService()
+    .start();
