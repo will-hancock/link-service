@@ -6,12 +6,9 @@ import * as memoize from 'memoized-class-decorator';
 import * as LRU from 'lru-cache';
 import {CachedHttpClient} from '../http';
 import {Proxy, ProxyGateway} from '../proxy';
-import {Logger} from '../logger';
+import {logger, Logger} from '../logger';
 
 export class Container {
-
-    constructor(private readonly logger: Logger) {
-    }
 
     @memoize
     public getConfig(): Config {
@@ -25,12 +22,12 @@ export class Container {
 
     @memoize
     public getKoaService(): KoaService {
-        return new KoaService(this.getCachedHttpClient(), this.logger, this.getConfig().koaPort);
+        return new KoaService(this.getCachedHttpClient(), this.getLogger(), this.getConfig().koaPort);
     }
 
     @memoize
     public getCachedHttpClient(): CachedHttpClient {
-        return new CachedHttpClient(this.getProxyGateway(), this.logger);
+        return new CachedHttpClient(this.getProxyGateway(), this.getLogger());
     }
 
     @memoize
@@ -47,8 +44,13 @@ export class Container {
             baseUrl.replace('$serviceName', proxies[proxyRegex].name),
             new RegExp(proxyRegex),
             LRU(proxies[proxyRegex].cacheConfig),
-            this.logger,
+            this.getLogger(),
         ));
+    }
+
+    @memoize
+    public getLogger(): Logger {
+        return logger;
     }
 
 }
