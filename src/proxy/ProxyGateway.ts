@@ -1,5 +1,5 @@
 import * as Bluebird from 'bluebird';
-import {Headers} from '../http';
+import {Headers} from '../http/CachedHttpClient';
 import {Proxy} from './Proxy';
 
 /**

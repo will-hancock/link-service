@@ -1,8 +1,8 @@
 import * as chai from 'chai';
 import * as spies from 'chai-spies';
 import * as Bluebird from 'bluebird';
-import {ProxyGateway} from '../../src/proxy';
-import {RecursiveHttpRequest} from '../../src/http';
+import {ProxyGateway} from '../../src/proxy/ProxyGateway';
+import {RecursiveHttpRequest} from '../../src/http/RecursiveHttpRequest';
 
 chai.use(spies);
 

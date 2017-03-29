@@ -2,8 +2,9 @@ import * as chai from 'chai';
 import * as spies from 'chai-spies';
 import * as LRU from 'lru-cache';
 import * as Bluebird from 'bluebird';
-import {Proxy, ProxyGateway} from '../../src/proxy';
-import {loggerStub} from '../../src/logger';
+import {loggerStub} from '../../src/logger/mockLogger';
+import {ProxyGateway} from '../../src/proxy/ProxyGateway';
+import {Proxy} from '../../src/proxy/Proxy';
 
 chai.use(spies);
 

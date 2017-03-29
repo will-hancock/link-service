@@ -1,6 +1,6 @@
 import {RecursiveHttpRequest, UriObjectMap} from './RecursiveHttpRequest';
-import {ProxyGateway} from '../proxy';
-import {Logger} from '../logger';
+import {ProxyGateway} from '../proxy/ProxyGateway';
+import {Logger} from '../logger/Logger';
 
 /**
  * The CachedHttpClient will send a RecursiveHttpRequest on to the ProxyGateway, waiting until every link has been

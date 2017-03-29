@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 import * as LRU from 'lru-cache';
-import {Proxy} from '../../src/proxy';
-import {loggerStub} from '../../src/logger';
+import {Proxy} from '../../src/proxy/Proxy';
+import {loggerStub} from '../../src/logger/mockLogger';
 
 describe('Proxy', () => {
 

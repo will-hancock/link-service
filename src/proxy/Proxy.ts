@@ -1,10 +1,11 @@
 import * as Bluebird from 'bluebird';
 import * as request from 'request-promise';
 import {option} from 'ts-option';
-import {Headers, UriObjectMap} from '../http';
 import {EventEmitter} from 'events';
 import {Cache} from 'lru-cache';
-import {Logger} from '../logger';
+import {Logger} from '../logger/Logger';
+import {UriObjectMap} from '../http/RecursiveHttpRequest';
+import {Headers} from '../http/CachedHttpClient';
 
 /**
  * The Proxy class resolves URIs with either a HTTP request or using it's local cache

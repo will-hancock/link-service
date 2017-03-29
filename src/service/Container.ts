@@ -4,9 +4,11 @@ import KoaService from './KoaService';
 import TestConfig from '../../config/test';
 import * as memoize from 'memoized-class-decorator';
 import * as LRU from 'lru-cache';
-import {CachedHttpClient} from '../http';
-import {Proxy, ProxyGateway} from '../proxy';
-import {logger, Logger} from '../logger';
+import {CachedHttpClient} from '../http/CachedHttpClient';
+import {ProxyGateway} from '../proxy/ProxyGateway';
+import {Proxy} from '../proxy/Proxy';
+import {Logger} from '../logger/Logger';
+import {logger} from '../logger/pino';
 
 export class Container {
 

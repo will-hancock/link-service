@@ -1,5 +1,5 @@
 import {Headers} from './CachedHttpClient';
-import {ProxyGateway} from '../proxy';
+import {ProxyGateway} from '../proxy/ProxyGateway';
 
 /**
  * The RecursiveHttpRequest will resolve any URI given to it, scanning the result for more URI's to resolve and storing

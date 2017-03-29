@@ -1,4 +1,4 @@
-import {Container} from './service';
+import {Container} from './service/Container';
 
 new Container()
     .getKoaService()

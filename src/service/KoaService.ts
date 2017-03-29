@@ -2,9 +2,9 @@ import * as Koa from 'koa';
 import {Context} from 'koa';
 import * as compress from 'koa-compress';
 import * as responseTime from 'koa-response-time';
-import {CachedHttpClient} from '../http';
 import {StatusCodeError} from 'request-promise/errors';
-import {Logger} from '../logger';
+import {CachedHttpClient} from '../http/CachedHttpClient';
+import {Logger} from '../logger/Logger';
 
 export default class KoaService {
 
