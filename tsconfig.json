@@ -7,10 +7,12 @@
     "experimentalDecorators": true,
     "noImplicitAny": false,
     "noImplicitThis": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "declaration": true
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist/"
   ],
   "lib": [
     "es2015",

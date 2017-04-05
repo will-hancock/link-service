@@ -1,6 +1,6 @@
 const DEFAULT_MAX_AGE = 1000 * 60; // 60 seconds
 
-interface CacheConfigItem {
+export interface CacheConfigItem {
     maxAge: number;
     max: number;
 }
@@ -9,7 +9,7 @@ export type CacheConfig = {
     [key: string]: CacheConfigItem;
 };
 
-interface ProxyConfigItem {
+export interface ProxyConfigItem {
     name: string;
     cacheConfig: CacheConfig;
 }

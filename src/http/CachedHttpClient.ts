@@ -37,7 +37,7 @@ export class CachedHttpClient {
  *   "/station/1": { ... }
  * }
  */
-interface Response {
+export interface Response {
     links: UriObjectMap;
     status: string;
 }
@@ -54,7 +54,7 @@ export type Headers = {
 /**
  * Request links and headers
  */
-interface Request {
+export interface Request {
     links: string[];
     headers: Headers;
 }
