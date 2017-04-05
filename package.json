@@ -2,7 +2,7 @@
   "name": "link-service",
   "version": "1.0.0",
   "description": "API to resolve URI's",
-  "main": "./dist/src/index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "preinstall": "tsc -p ./ --outDir dist/",
     "test": "mocha --compilers ts:ts-node/register,tsx:ts-node/register 'test/**/*.ts'",
