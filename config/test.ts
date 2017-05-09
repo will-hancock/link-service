@@ -27,6 +27,10 @@ export default class TestConfig extends Config {
             name: 'ride-service',
             cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 200},
         },
+        '^\/railcard\/[a-zA-Z0-9]+': {
+            name: 'ride-service',
+            cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 20},
+        },
 
     };
 
