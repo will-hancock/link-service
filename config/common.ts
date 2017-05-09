@@ -45,8 +45,8 @@ export default class Config {
             cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 200},
         },
         '^\/railcard\/[a-zA-Z0-9]+': {
-            'maxAge': DEFAULT_MAX_AGE,
-            'max': 20,
+            name: 'ride-service',
+            cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 20},
         },
     };
 
