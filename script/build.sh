@@ -10,5 +10,5 @@ then
 	echo "You must run this script from the script folder"
 	exit 1
 else
-	npm install
+	yarn install
 fi
