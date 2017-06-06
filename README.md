@@ -1,6 +1,6 @@
 # Link service
 
-This service will take a number of URI's and resolve them, recursively inspecting the results and resolving any further links in the process.
+This service will take a number of URIs and resolve them, recursively inspecting the results and resolving any further links in the process.
 
 ## Install
 
