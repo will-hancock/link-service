@@ -5,18 +5,30 @@ import uk.co.assertis.*
 node {
   def logger = new Logger(steps, true)
 
-  def vars = new GitVars(this)
-  def buildOptions = [
-    debug: "1",
+  def gitVars = new GitVars(this)
+
+  def debBuildOptions = [
+    debug: "1"
   ]
-  def acceptance = [		
+  def shBuildOptions = [
   :]
-  def utils = new Utils(this, logger, vars, null, acceptance)
-  def debs = new Debs(steps, this, logger, vars, utils, "apps.live", buildOptions)
+  def unitOptions = [
+  :]
+  def acceptanceOptions = [
+  :]
+
+  def utils = new Utils(this, logger, gitVars, shBuildOptions, unitOptions, acceptanceOptions)
+  def debs = new Debs(this, steps, logger, gitVars, utils, "apps.live", debBuildOptions)
 
   stage("Prepare") {
     checkout scm
-    vars.setDisplayName()
+    gitVars.setDisplayName()
+  }
+
+  if (utils.hasBuildFiles()) {
+    stage("Build an app") {
+      utils.runBuildFiles()
+    }
   }
 
   utils.runUnitTests()
