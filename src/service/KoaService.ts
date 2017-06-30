@@ -44,7 +44,7 @@ export default class KoaService {
         try {
             ctx.body = await this.httpClient.get({
                 links: JSON.parse(ctx.request.query.links),
-                headers: pick(ctx.headers, 'X-AUTH-TOKEN', 'X-ENV', 'X-TENANT', 'user-agent', 'accept', 'accept-encoding'),
+                headers: pick(ctx.headers, 'x-auth-token', 'x-env', 'x-tenant', 'user-agent', 'accept', 'accept-encoding'),
             });
         } catch (err) {
             if (err instanceof StatusCodeError) {

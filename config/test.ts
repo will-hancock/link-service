@@ -31,7 +31,14 @@ export default class TestConfig extends Config {
             name: 'ride-service',
             cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 20},
         },
-
+        '^\/supplement-type\/[a-zA-Z0-9]+': {
+            name: 'ride-service',
+            cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 200},
+        },
+        '^\/delivery\/[a-zA-Z\-]+': {
+            name: 'delivery-service',
+            cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 200},
+        },
     };
 
 }
