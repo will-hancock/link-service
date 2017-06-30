@@ -5,19 +5,19 @@ This service will take a number of URIs and resolve them, recursively inspecting
 ## Install
 
 ```
-npm install
+yarn
 ```
 
 ## Test
 
 ```
-npm test
+yarn test
 ```
 
 ## Run
 
 ```
-npm start
+yarn start
 ```
 
 ## Usage
