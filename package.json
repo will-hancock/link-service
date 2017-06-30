@@ -6,7 +6,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc -p ./ --outDir dist/",
-    "prepublish": "yarn run build",
+    "prepublishOnly": "yarn run build",
     "test": "mocha --compilers ts:ts-node/register,tsx:ts-node/register 'test/**/*.ts'",
     "watch-test": "mocha -w --compilers ts:ts-node/register,tsx:ts-node/register 'test/**/*.ts'",
     "start": "yarn run lint && ts-node ./src/index.ts",
