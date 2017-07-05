@@ -39,6 +39,10 @@ export default class TestConfig extends Config {
             name: 'delivery-service',
             cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 200},
         },
+        '^\/discount\/[0-9]+': {
+            name: 'discount-service',
+            cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 200},
+        },
     };
 
 }
