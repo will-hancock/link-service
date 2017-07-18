@@ -9,7 +9,7 @@ import {ProxyGateway} from '../proxy/ProxyGateway';
 import {Proxy} from '../proxy/Proxy';
 import {Logger} from '../logger/Logger';
 import {logger} from '../logger/pino';
-import LiveConfig from "../../config/live";
+import LiveConfig from '../../config/live';
 
 export class Container {
 
