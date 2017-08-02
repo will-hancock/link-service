@@ -28,10 +28,6 @@ export default class Config {
             name: 'ride-service',
             cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 4000},
         },
-        '^\/sundry-type\/[0-9a-zA-Z]+': {
-            name: 'sundry-service',
-            cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 4000},
-        },
         '^\/ticket-type\/[a-zA-Z0-9]+': {
             name: 'ride-service',
             cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 500},
@@ -63,6 +59,10 @@ export default class Config {
         '^\/discount\/[0-9]+': {
             name: 'discount-service',
             cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 200},
+        },
+        '^\/sundry-type\/[0-9a-zA-Z]+': {
+            name: 'sundry-service',
+            cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 20},
         },
     };
 
