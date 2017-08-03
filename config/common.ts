@@ -62,7 +62,7 @@ export default class Config {
         },
         '^\/paypal\/[0-9]+': {
             name: 'paypal-service',
-            cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 20},
+            cacheConfig: {maxAge: 0, max: 20},
         },
     };
 
