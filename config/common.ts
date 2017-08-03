@@ -64,6 +64,14 @@ export default class Config {
             name: 'paypal-service',
             cacheConfig: {maxAge: 0, max: 0},
         },
+        '\/payment\/[0-9]+': {
+            name: 'order-service',
+            cacheConfig: {maxAge: 0, max: 0},
+        },
+        '\/order\/[0-9]+': {
+            name: 'order-service',
+            cacheConfig: {maxAge: 0, max: 0},
+        },
     };
 
 }
