@@ -20,7 +20,7 @@ export type ProxyConfig = {
 export default abstract class Config {
 
     public abstract defaultMaxAge;
-    public baseUrl = 'http://$serviceName.local';
+    public abstract baseUrl;
     public koaPort = 9000;
 
     public proxies = {
