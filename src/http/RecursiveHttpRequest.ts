@@ -35,8 +35,9 @@ export class RecursiveHttpRequest {
      */
     private async resolveNestedLinks(item: Object, blacklist: string[]): Promise<void> {
         for (const key in item) {
-            // check if key is a URI is that is not in the blacklist
-            if (typeof item[key] === 'string' && /^\/[a-zA-Z-]+\//.test(item[key]) && blacklist.indexOf(item[key]) === -1) {
+            if (typeof item[key] === 'string' && // check value is a string
+                /^\/[a-zA-Z-]+\//.test(item[key]) && // see if it looks like a URI
+                blacklist.indexOf(item[key]) === -1) { // make sure it's not blacklisted
                 await this.resolve(item[key], blacklist);
             }
             else if (typeof item[key] === 'object' && item[key] !== null) {
