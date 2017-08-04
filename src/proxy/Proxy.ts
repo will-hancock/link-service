@@ -14,7 +14,7 @@ export class Proxy extends EventEmitter {
 
     constructor(private readonly baseUrl: string,
                 private readonly regex: RegExp,
-                private readonly cache: Cache<any>,
+                private readonly cache: Cache<object>,
                 private readonly logger: Logger) {
         super();
     }
@@ -30,16 +30,16 @@ export class Proxy extends EventEmitter {
      * This method will attempt to get the given URI from the cache, if it is not available it will send a HTTP request
      * and then cache both the result and the links in the response.
      */
-    public get(uri: string, headers: Headers): Bluebird<any> {
+    public get(uri: string, headers: Headers): Bluebird<object> {
         const cacheResult = this.cache.get(uri);
 
         return option(cacheResult).match({
             some: item => Bluebird.resolve(item),
-            none: () => Bluebird.resolve(this.getViaHttp(uri, headers)),
+            none: () => this.getViaHttp(uri, headers)
         });
     }
 
-    private async getViaHttp(uri: string, headers: Headers) {
+    private getViaHttp(uri: string, headers: Headers): Bluebird<object> {
         this.logger.info(`Cache miss. Sending request to ${this.baseUrl + uri}`);
 
         const options = {
@@ -48,13 +48,13 @@ export class Proxy extends EventEmitter {
             json: true,
             gzip: true,
             transform2xxOnly: true,
-            transform: (body, response) => this.handleHttpResponse(body, response, uri),
+            transform: (body, response) => this.handleHttpResponse(body, response, uri)
         };
 
         return request(options);
     }
 
-    private handleHttpResponse(body: ServiceResponse, response: Response, uri: string) {
+    private handleHttpResponse(body: ServiceResponse, response: Response, uri: string): object {
         const result = body.data;
         const links = body.links;
 
@@ -78,7 +78,7 @@ export class Proxy extends EventEmitter {
      * @param uri
      * @param item
      */
-    public cacheItem(uri: string, item: any) {
+    public cacheItem(uri: string, item: object): void {
         this.cache.set(uri, item);
     }
 

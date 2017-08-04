@@ -1,4 +1,3 @@
-const DEFAULT_MAX_AGE = 1000 * 60; // 60 seconds
 
 export interface CacheConfigItem {
     maxAge: number;
@@ -18,60 +17,61 @@ export type ProxyConfig = {
     [uriRegex: string]: ProxyConfigItem;
 };
 
-export default class Config {
+export default abstract class Config {
 
+    public abstract defaultMaxAge;
     public baseUrl = 'http://$serviceName.local';
     public koaPort = 9000;
 
     public proxies = {
         '^\/station\/.+': {
             name: 'ride-service',
-            cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 4000},
+            cacheConfig: { maxAge: this.defaultMaxAge, max: 4000 }
         },
         '^\/ticket-type\/[a-zA-Z0-9]+': {
             name: 'ride-service',
-            cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 500},
+            cacheConfig: { maxAge: this.defaultMaxAge, max: 500 }
         },
         '^\/validity-type\/[a-zA-Z0-9]+': {
             name: 'ride-service',
-            cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 100},
+            cacheConfig: { maxAge: this.defaultMaxAge, max: 100 }
         },
         '^\/restriction\/[a-zA-Z0-9]+': {
             name: 'ride-service',
-            cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 500},
+            cacheConfig: { maxAge: this.defaultMaxAge, max: 500 }
         },
         '^\/route\/[0-9]+': {
             name: 'ride-service',
-            cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 200},
+            cacheConfig: { maxAge: this.defaultMaxAge, max: 200 }
         },
         '^\/railcard\/[a-zA-Z0-9]+': {
             name: 'ride-service',
-            cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 20},
+            cacheConfig: { maxAge: this.defaultMaxAge, max: 20 }
         },
         '^\/supplement-type\/[a-zA-Z0-9]+': {
             name: 'ride-service',
-            cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 200},
+            cacheConfig: { maxAge: this.defaultMaxAge, max: 200 }
         },
         '^\/delivery\/[a-zA-Z\-]+': {
             name: 'delivery-service',
-            cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 200},
+            cacheConfig: { maxAge: this.defaultMaxAge, max: 200 }
         },
         '^\/discount\/[0-9]+': {
             name: 'discount-service',
-            cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 200},
+            cacheConfig: { maxAge: this.defaultMaxAge, max: 200 }
         },
         '^\/paypal\/[0-9]+': {
             name: 'paypal-service',
-            cacheConfig: {maxAge: 0, max: 0},
+            cacheConfig: { maxAge: 0, max: 0 }
         },
         '\/payment\/[0-9]+': {
             name: 'order-service',
-            cacheConfig: {maxAge: 0, max: 0},
+            cacheConfig: { maxAge: 0, max: 0 }
         },
         '\/order\/[0-9]+': {
             name: 'order-service',
-            cacheConfig: {maxAge: 0, max: 0},
-        },
+            cacheConfig: { maxAge: 0, max: 0 }
+        }
     };
 
 }
