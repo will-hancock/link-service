@@ -2,4 +2,4 @@
 
 cd ${WORKSPACE}
 
-yarn test
+npm test

@@ -2,4 +2,4 @@
 
 cd ${WORKSPACE}
 
-yarn install
+npm install

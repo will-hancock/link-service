@@ -20,11 +20,11 @@ export class CachedHttpClient {
 
         const result = new RecursiveHttpRequest(this.proxy, req.headers);
 
-        await Promise.all(req.links.map(uri => result.resolve(uri)));
+        await Promise.all(req.links.map(uri => result.resolve(uri, req.blacklist)));
 
         return {
             status: 'success',
-            links: result.links,
+            links: result.links
         };
     }
 
@@ -56,5 +56,6 @@ export type Headers = {
  */
 export interface Request {
     links: string[];
+    blacklist: string[];
     headers: Headers;
 }

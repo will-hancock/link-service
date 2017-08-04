@@ -16,12 +16,9 @@ export class Container {
     @memoize
     public getConfig(): Config {
         switch (process.env.NODE_ENV) {
-            case 'live':
-                return new LiveConfig();
-            case 'test':
-                return new TestConfig();
-            default:
-                return new DevConfig();
+            case 'live': return new LiveConfig();
+            case 'test': return new TestConfig();
+            default: return new DevConfig();
         }
     }
 
@@ -49,7 +46,7 @@ export class Container {
             baseUrl.replace('$serviceName', proxies[proxyRegex].name),
             new RegExp(proxyRegex),
             LRU(proxies[proxyRegex].cacheConfig),
-            this.getLogger(),
+            this.getLogger()
         ));
     }
 
