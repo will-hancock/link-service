@@ -9,7 +9,7 @@ export class ProxyGateway {
 
     constructor(private readonly proxies: Proxy[]) {
         for (const proxy of proxies) {
-            proxy.on('item', this.cacheItem);
+            proxy.on('item', this.cacheItem.bind(this));
         }
     }
 
