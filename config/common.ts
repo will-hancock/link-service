@@ -74,11 +74,11 @@ export default abstract class Config {
         },
         '\/address\/[0-9]+': {
             name: 'customer-service',
-            cacheConfig: { maxAge: 0, max: 0 }
+            cacheConfig: { maxAge: this.defaultMaxAge, max: 0 }
         },
         '\/customer\/[0-9]+': {
             name: 'customer-service',
-            cacheConfig: { maxAge: 0, max: 0 }
+            cacheConfig: { maxAge: this.defaultMaxAge, max: 0 }
         }
     };
 
