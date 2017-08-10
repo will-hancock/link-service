@@ -71,6 +71,14 @@ export default abstract class Config {
         '\/order\/[0-9]+': {
             name: 'order-service',
             cacheConfig: { maxAge: 0, max: 0 }
+        },
+        '\/address\/[0-9]+': {
+            name: 'customer-service',
+            cacheConfig: { maxAge: this.defaultMaxAge, max: 0 }
+        },
+        '\/customer\/[0-9]+': {
+            name: 'customer-service',
+            cacheConfig: { maxAge: this.defaultMaxAge, max: 0 }
         }
     };
 
