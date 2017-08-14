@@ -5,7 +5,6 @@ import * as responseTime from 'koa-response-time';
 import {StatusCodeError} from 'request-promise/errors';
 import {CachedHttpClient} from '../http/CachedHttpClient';
 import {Logger} from '../logger/Logger';
-import {pick} from 'lodash';
 
 export default class KoaService {
 
@@ -65,4 +64,8 @@ export default class KoaService {
         }
     };
 
+}
+
+function pick(item, props) {
+    return Object.assign({}, ...props.map(prop => ({[prop]: item[prop]})));
 }
