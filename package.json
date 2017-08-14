@@ -39,7 +39,6 @@
   "dependencies": {
     "@types/bluebird": "^3.5.0",
     "@types/koa": "^2.0.39",
-    "@types/lodash": "^4.14.72",
     "@types/lru-cache": "^4.0.0",
     "@types/node": "^8.0.19",
     "@types/pino": "^3.0.1",
@@ -48,7 +47,6 @@
     "koa": "^2.2.0",
     "koa-compress": "^2.0.0",
     "koa-response-time": "^2.0.0",
-    "lodash": "^4.17.4",
     "lru-cache": "^4.0.2",
     "memoized-class-decorator": "^1.0.1",
     "pino": "^4.2.3",
