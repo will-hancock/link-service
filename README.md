@@ -14,7 +14,13 @@ npm install --dev
 npm test
 ```
 
-## Run
+## Run in dev (via ts-node)
+
+```
+npm run dev
+```
+
+## Run in prod (via plain node)
 
 ```
 npm start
