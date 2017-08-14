@@ -3,3 +3,4 @@
 cd ${WORKSPACE}
 
 npm install
+npm run build
