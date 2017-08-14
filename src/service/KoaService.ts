@@ -70,6 +70,6 @@ export default class KoaService {
 
 }
 
-function pick(item, props) {
+function pick(item: object, props: string[]) {
     return Object.assign({}, ...props.map(prop => ({[prop]: item[prop]})));
 }
