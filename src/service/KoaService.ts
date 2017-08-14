@@ -3,7 +3,7 @@ import {Context} from 'koa';
 import * as compress from 'koa-compress';
 import * as responseTime from 'koa-response-time';
 import {StatusCodeError} from 'request-promise/errors';
-import {CachedHttpClient} from '../http/CachedHttpClient';
+import {CachedHttpClient, Request} from '../http/CachedHttpClient';
 import {Logger} from '../logger/Logger';
 
 export default class KoaService {
@@ -32,9 +32,6 @@ export default class KoaService {
 
     /**
      * Handle journey planning requests.
-     *
-     * @param ctx
-     * @returns {Promise<void>}
      */
     private async handler(ctx: Context) {
         if (ctx.request.path !== '/resolve') {
@@ -42,11 +39,7 @@ export default class KoaService {
         }
 
         try {
-            ctx.body = await this.httpClient.get({
-                links: JSON.parse(ctx.request.query.links),
-                blacklist: ctx.request.query.blacklist ? JSON.parse(ctx.request.query.blacklist) : [],
-                headers: pick(ctx.headers, KoaService.VALID_HEADERS)
-            });
+            ctx.body = await this.httpClient.get(KoaService.buildRequest(ctx));
         }
         catch (err) {
             if (err instanceof StatusCodeError) {
@@ -62,7 +55,18 @@ export default class KoaService {
                 ctx.response.status = 500;
             }
         }
-    };
+    }
+
+    /**
+     * Use the Koa Context to create a Request object
+     */
+    public static buildRequest(ctx: Context): Request {
+        return {
+            links: JSON.parse(ctx.request.query.links),
+            blacklist: ctx.request.query.blacklist ? JSON.parse(ctx.request.query.blacklist) : [],
+            headers: pick(ctx.headers, KoaService.VALID_HEADERS)
+        };
+    }
 
 }
 
