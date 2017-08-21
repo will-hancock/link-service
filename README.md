@@ -5,19 +5,19 @@ This service will take a number of URIs and resolve them, recursively inspecting
 ## Install
 
 ```
-yarn
+npm install --dev
 ```
 
 ## Test
 
 ```
-yarn test
+npm test
 ```
 
 ## Run
 
 ```
-yarn start
+npm start
 ```
 
 ## Usage
@@ -30,6 +30,8 @@ curl "http://localhost:9000/resolve?links=\[%22/station/1072%22,%22/ticket-type/
 ```
 
 Caching can be configured per URI type in the `config/[env].ts` file.
+
+Optionally you can pass a `&blacklist=["/order/123","/order/456"]` parameter to avoid resolving specific URIs.
 
 ## How does it work
 
@@ -57,11 +59,6 @@ Caching can be configured per URI type in the `config/[env].ts` file.
 
 \* Recursive Request Context is fancy language for an object that stores all the resolved links to be returned in the 
 response. 
-
-
-## TODO
-
-- key and value blacklists (e.g. literal keys "uri" and regex values)
 
 ## License
 

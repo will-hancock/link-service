@@ -3,10 +3,14 @@ import {Context} from 'koa';
 import * as compress from 'koa-compress';
 import * as responseTime from 'koa-response-time';
 import {StatusCodeError} from 'request-promise/errors';
-import {CachedHttpClient} from '../http/CachedHttpClient';
+import {CachedHttpClient, Request} from '../http/CachedHttpClient';
 import {Logger} from '../logger/Logger';
 
 export default class KoaService {
+
+    private static readonly VALID_HEADERS = [
+        'x-access-token', 'x-auth-token', 'x-env', 'x-tenant', 'user-agent', 'accept', 'accept-encoding'
+    ];
 
     constructor(private readonly httpClient: CachedHttpClient,
                 private readonly logger: Logger,
@@ -23,18 +27,11 @@ export default class KoaService {
         app.use(compress());
         app.use(this.handler.bind(this));
 
-        app.listen(this.koaPort)
-            .addListener('listening', this.listener);
+        app.listen(this.koaPort);
     }
-
-    private listener = () =>
-        this.logger.info(`Service started on port ${this.koaPort}.`);
 
     /**
      * Handle journey planning requests.
-     *
-     * @param ctx
-     * @returns {Promise<void>}
      */
     private async handler(ctx: Context) {
         if (ctx.request.path !== '/resolve') {
@@ -42,27 +39,37 @@ export default class KoaService {
         }
 
         try {
-            ctx.body = await this.httpClient.get({
-                links: JSON.parse(ctx.request.query.links),
-                headers: pick(ctx.headers, 'x-auth-token', 'x-env', 'x-tenant', 'user-agent', 'accept', 'accept-encoding'),
-            });
-        } catch (err) {
+            ctx.body = await this.httpClient.get(KoaService.buildRequest(ctx));
+        }
+        catch (err) {
             if (err instanceof StatusCodeError) {
                 this.logger.info(err);
 
                 ctx.body = err.error;
                 ctx.response.status = err.statusCode;
-            } else {
+            }
+            else {
                 this.logger.error(err);
 
                 ctx.body = err.message;
                 ctx.response.status = 500;
             }
         }
-    };
+    }
+
+    /**
+     * Use the Koa Context to create a Request object
+     */
+    public static buildRequest(ctx: Context): Request {
+        return {
+            links: JSON.parse(ctx.request.query.links),
+            blacklist: ctx.request.query.blacklist ? JSON.parse(ctx.request.query.blacklist) : [],
+            headers: pick(ctx.headers, KoaService.VALID_HEADERS)
+        };
+    }
 
 }
 
-function pick(item, ...props) {
+function pick(item: object, props: string[]) {
     return Object.assign({}, ...props.map(prop => ({[prop]: item[prop]})));
 }

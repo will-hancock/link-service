@@ -15,8 +15,10 @@ export class RecursiveHttpRequest {
     /**
      * Use the ProxyGateway to get the given URI item then scan the resulting item for any nested links that need to be
      * resolved.
+     *
+     * Any items in the blacklist are not resolved
      */
-    public async resolve(uri: string): Promise<void> {
+    public async resolve(uri: string, blacklist: string[]): Promise<void> {
         if (this.links[uri]) {
             return Promise.resolve();
         }
@@ -25,18 +27,21 @@ export class RecursiveHttpRequest {
 
         this.links[uri] = item;
 
-        await this.resolveNestedLinks(item);
+        await this.resolveNestedLinks(item, blacklist);
     }
 
     /**
      * Recursively iterate through the values in an object checking for an links that need to be resolved
      */
-    private async resolveNestedLinks(item: Object): Promise<void> {
+    private async resolveNestedLinks(item: Object, blacklist: string[]): Promise<void> {
         for (const key in item) {
-            if (typeof item[key] === 'string' && /^\/[a-zA-Z-]+\//.test(item[key])) {
-                await this.resolve(item[key]);
-            } else if (typeof item[key] === 'object' && item[key] !== null) {
-                await this.resolveNestedLinks(item[key]);
+            if (typeof item[key] === 'string' && // check value is a string
+                /^\/[a-zA-Z-]+\//.test(item[key]) && // see if it looks like a URI
+                blacklist.indexOf(item[key]) === -1) { // make sure it's not blacklisted
+                await this.resolve(item[key], blacklist);
+            }
+            else if (typeof item[key] === 'object' && item[key] !== null) {
+                await this.resolveNestedLinks(item[key], blacklist);
             }
         }
     }

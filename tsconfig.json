@@ -2,7 +2,7 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "module": "commonjs",
-    "target": "es6",
+    "target": "es2017",
     "sourceMap": false,
     "experimentalDecorators": true,
     "noImplicitAny": false,
@@ -12,16 +12,10 @@
   },
   "exclude": [
     "node_modules",
-    "dist/",
-    "test/"
+    "dist/"
   ],
   "lib": [
     "es2015",
     "dom"
-  ],
-  "paths": {
-    "*": [
-      "typings/*"
-    ]
-  }
+  ]
 }
