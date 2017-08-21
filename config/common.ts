@@ -60,6 +60,10 @@ export default abstract class Config {
             name: 'discount-service',
             cacheConfig: {maxAge: this.defaultMaxAge, max: 200}
         },
+        '^\/sundry-type\/[0-9a-zA-Z]+': {
+            name: 'sundry-service',
+            cacheConfig: {maxAge: DEFAULT_MAX_AGE, max: 20},
+        },
         '^\/paypal\/[0-9]+': {
             name: 'paypal-service',
             cacheConfig: {maxAge: 0, max: 0}
