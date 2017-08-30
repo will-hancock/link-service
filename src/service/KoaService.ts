@@ -28,6 +28,7 @@ export default class KoaService {
         app.use(this.handler.bind(this));
 
         app.listen(this.koaPort);
+        this.logger.info(`Service started on ${this.koaPort}`);
     }
 
     /**

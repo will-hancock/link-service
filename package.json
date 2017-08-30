@@ -1,6 +1,6 @@
 {
   "name": "link-service",
-  "version": "2.0.2",
+  "version": "2.1.1",
   "description": "API to resolve URI's",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -29,20 +29,20 @@
   "homepage": "https://github.com/assertis/link-service",
   "devDependencies": {
     "@types/bluebird": "^3.5.0",
-    "@types/chai": "^4.0.3",
+    "@types/chai": "^4.0.4",
     "@types/chai-spies": "0.0.0",
     "@types/koa": "^2.0.39",
-    "@types/lru-cache": "^4.0.0",
-    "@types/mocha": "^2.2.41",
-    "@types/node": "^8.0.20",
+    "@types/lru-cache": "^4.1.0",
+    "@types/mocha": "^2.2.42",
+    "@types/node": "^8.0.26",
     "@types/pino": "^3.0.2",
-    "@types/request-promise": "^4.1.33",
+    "@types/request-promise": "^4.1.37",
     "chai": "^4.1.1",
     "chai-spies": "^0.7.1",
     "mocha": "^3.5.0",
     "ts-node": "^3.3.0",
     "tslint": "^4.5.1",
-    "typescript": "^2.2.1"
+    "typescript": "^2.5.1"
   },
   "dependencies": {
     "bluebird": "^3.5.0",

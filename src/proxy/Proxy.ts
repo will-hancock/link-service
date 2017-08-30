@@ -14,7 +14,7 @@ export class Proxy extends EventEmitter {
 
     constructor(private readonly baseUrl: string,
                 private readonly regex: RegExp,
-                private readonly cache: Cache<object>,
+                private readonly cache: Cache<string, object>,
                 private readonly logger: Logger) {
         super();
     }
