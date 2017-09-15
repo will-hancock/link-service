@@ -62,79 +62,79 @@ export default abstract class Config {
         },
         '^\/sundry-type\/[0-9a-zA-Z]+': {
             name: 'sundry-service',
-            cacheConfig: {maxAge: this.defaultMaxAge, max: 20},
+            cacheConfig: {maxAge: this.defaultMaxAge, max: 20}
         },
         '^\/paypal\/[0-9]+': {
             name: 'paypal-service',
-            cacheConfig: {maxAge: 0, max: 0}
+            cacheConfig: {maxAge: 1, max: 0}
         },
         '\/payment\/[0-9]+': {
             name: 'order-service',
-            cacheConfig: {maxAge: 0, max: 0}
+            cacheConfig: {maxAge: 1, max: 0}
         },
         '\/order\/[0-9]+': {
             name: 'order-service',
-            cacheConfig: {maxAge: 0, max: 0}
+            cacheConfig: {maxAge: 1, max: 0}
         },
         '\/trip\/[0-9]+': {
             name: 'order-service',
-            cacheConfig: {maxAge: 0, max: 0}
+            cacheConfig: {maxAge: 1, max: 0}
         },
         '\/journey\/[0-9]+': {
             name: 'order-service',
-            cacheConfig: {maxAge: 0, max: 0}
+            cacheConfig: {maxAge: 1, max: 0}
         },
         '\/ticket\/[0-9]+': {
             name: 'order-service',
-            cacheConfig: {maxAge: 0, max: 0}
+            cacheConfig: {maxAge: 1, max: 0}
         },
         '\/supplement\/[0-9]+': {
             name: 'order-service',
-            cacheConfig: {maxAge: 0, max: 0}
+            cacheConfig: {maxAge: 1, max: 0}
         },
         '\/card-payment\/[0-9]+': {
             name: 'order-service',
-            cacheConfig: {maxAge: 0, max: 0}
+            cacheConfig: {maxAge: 1, max: 0}
         },
         '\/fare\/[0-9]+': {
             name: 'order-service',
-            cacheConfig: {maxAge: 0, max: 0}
+            cacheConfig: {maxAge: 1, max: 0}
         },
         '\/leg\/[0-9]+': {
             name: 'order-service',
-            cacheConfig: {maxAge: 0, max: 0}
+            cacheConfig: {maxAge: 1, max: 0}
         },
         '\/reservation\/[A-Za-z0-9]+': {
             name: 'order-service',
-            cacheConfig: {maxAge: 0, max: 0}
+            cacheConfig: {maxAge: 1, max: 0}
         },
         '\/seat-reservation\/[0-9]+': {
             name: 'order-service',
-            cacheConfig: {maxAge: 0, max: 0}
+            cacheConfig: {maxAge: 1, max: 0}
         },
         '\/sundry\/[0-9]+': {
             name: 'order-service',
-            cacheConfig: {maxAge: 0, max: 0}
+            cacheConfig: {maxAge: 1, max: 0}
         },
         '\/sundry-type\/[0-9]+': {
             name: 'order-service',
-            cacheConfig: {maxAge: 0, max: 0}
+            cacheConfig: {maxAge: 1, max: 0}
         },
         '\/toc\/[A-Za-z0-9]+': {
             name: 'order-service',
-            cacheConfig: {maxAge: 0, max: 0}
+            cacheConfig: {maxAge: 1, max: 0}
         },
         '\/voucher-payment\/[0-9]+': {
             name: 'order-service',
-            cacheConfig: {maxAge: 0, max: 0}
+            cacheConfig: {maxAge: 1, max: 0}
         },
         '\/warrant-payment\/[0-9]+': {
             name: 'order-service',
-            cacheConfig: {maxAge: 0, max: 0}
+            cacheConfig: {maxAge: 1, max: 0}
         },
         '\/service\/[A-Za-z0-9]+\/[0-9]{4}\-[0-9]{2}\-[0-9]{2}': {
             name: 'order-service',
-            cacheConfig: {maxAge: 0, max: 0}
+            cacheConfig: {maxAge: 1, max: 0}
         },
         '\/address\/[0-9]+': {
             name: 'customer-service',
