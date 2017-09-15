@@ -10,6 +10,7 @@
     "test": "mocha --compilers ts:ts-node/register,tsx:ts-node/register 'test/**/*.ts'",
     "watch-test": "mocha -w --compilers ts:ts-node/register,tsx:ts-node/register 'test/**/*.ts'",
     "start": "ts-node ./src/index.ts",
+    "clear": "ts-node ./src/clearCache.ts",
     "lint-raw": "tslint --project tsconfig.json",
     "lint": "npm run lint-raw -- -t stylish"
   },
