@@ -23,8 +23,8 @@ export class ProxyGateway {
     /**
      * Cache the given item in the correct proxy cache
      */
-    public cacheItem(uri: string, item: object): void {
-        return this.getProxy(uri).cacheItem(uri, item);
+    public cacheItem(uri: string, tenant: string, item: object): void {
+        return this.getProxy(uri).cacheItem(uri, tenant, item);
     }
 
     private getProxy(uri: string): Proxy {
