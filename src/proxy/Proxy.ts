@@ -31,7 +31,7 @@ export class Proxy extends EventEmitter {
      * and then cache both the result and the links in the response.
      */
     public get(uri: string, headers: Headers): Bluebird<object> {
-        const cacheResult = this.cache.get(uri);
+        const cacheResult = this.fromCache(uri, <string>headers['x-tenant'] || '');
 
         return option(cacheResult).match({
             some: item => Bluebird.resolve(item),
@@ -48,23 +48,24 @@ export class Proxy extends EventEmitter {
             json: true,
             gzip: true,
             transform2xxOnly: true,
-            transform: (body, response) => this.handleHttpResponse(body, response, uri)
+            transform: (body, response) => this.handleHttpResponse(body, response, uri, <string>headers['x-tenant'] || '')
         };
 
         return request(options);
     }
 
-    private handleHttpResponse(body: ServiceResponse, response: Response, uri: string): object {
+    private handleHttpResponse(body: ServiceResponse, response: Response, uri: string, tenant: string): object {
         const result = body.data;
         const links = body.links;
 
-        this.cache.set(uri, result, response.headers['max-age']);
+        // cache the response data in our bucket
+        this.cacheItem(uri, tenant, result, response.headers['max-age']);
 
         if (links) {
             for (const linkUri in links) {
                 if (links.hasOwnProperty(linkUri)) {
                     // bubble up the links we get to the gateway so they can be cached in the correct bucket
-                    this.emit('item', linkUri, links[linkUri]);
+                    this.emit('item', linkUri, tenant, links[linkUri]);
                 }
             }
         }
@@ -74,12 +75,16 @@ export class Proxy extends EventEmitter {
 
     /**
      * Add the given item to the proxies cache
-     *
-     * @param uri
-     * @param item
      */
-    public cacheItem(uri: string, item: object): void {
-        this.cache.set(uri, item);
+    public cacheItem(uri: string, tenant: string, item: object, maxAge?: number): void {
+        this.cache.set(tenant + uri, item, maxAge);
+    }
+
+  /**
+   * Load item from cache
+   */
+    private fromCache(uri: string, tenant: string): object | undefined {
+        return this.cache.get(tenant + uri);
     }
 
 }
