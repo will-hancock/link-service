@@ -10,6 +10,7 @@ import {Proxy} from '../proxy/Proxy';
 import {Logger} from '../logger/Logger';
 import {logger} from '../logger/pino';
 import LiveConfig from '../../config/live';
+import SidConfig from '../../config/sid';
 
 export class Container {
 
@@ -18,6 +19,8 @@ export class Container {
         switch (process.env.NODE_ENV) {
             case 'live': return new LiveConfig();
             case 'test': return new TestConfig();
+            case 'sid':
+                return new SidConfig();
             default: return new DevConfig();
         }
     }
