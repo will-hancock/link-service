@@ -1,0 +1,19 @@
+[Unit]
+Description=Link Service
+Wants=network.target
+After=network.target
+
+[Service]
+User=fatcontroller
+PermissionsStartOnly=true
+ExecStartPre=/bin/bash -c "/bin/systemctl set-environment NODE_ENV=$$(/bin/cat /etc/env)"
+ExecStart=/usr/bin/node /var/www/link-service/dist/src/index.js
+ExecStop=/bin/kill -9 $MAINPID
+SyslogIdentifier=link-service
+StandardOutput=syslog
+StandardError=syslog
+Restart=always
+Type=simple
+
+TimeoutSec=10
+RestartSec=60
