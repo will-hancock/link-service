@@ -147,10 +147,6 @@ export default abstract class Config {
         '\/passenger\/[0-9]+': {
             name: 'order-service',
             cacheConfig: {maxAge: this.defaultMaxAge, max: 1000}
-        },
-        '\/paypal\/[0-9]+': {
-            name: 'paypal-service',
-            cacheConfig: {maxAge: this.defaultMaxAge, max: 0}
         }
     };
 
