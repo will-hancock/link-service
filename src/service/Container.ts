@@ -19,8 +19,7 @@ export class Container {
         switch (process.env.NODE_ENV) {
             case 'live': return new LiveConfig();
             case 'test': return new TestConfig();
-            case 'sid':
-                return new SidConfig();
+            case 'sid': return new SidConfig();
             default: return new DevConfig();
         }
     }
