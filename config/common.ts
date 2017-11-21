@@ -72,6 +72,10 @@ export default abstract class Config {
             name: 'order-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
+        '\/st-card-payment\/[0-9]+': {
+            name: 'secure-trading-service',
+            cacheConfig: {maxAge: 1, max: 0}
+        },
         '\/order\/[0-9]+': {
             name: 'order-service',
             cacheConfig: {maxAge: 1, max: 0}
