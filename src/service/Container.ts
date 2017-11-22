@@ -11,6 +11,7 @@ import {Logger} from '../logger/Logger';
 import {logger} from '../logger/pino';
 import LiveConfig from '../../config/live';
 import SidConfig from '../../config/sid';
+import StageConfig from '../../config/stage';
 
 export class Container {
 
@@ -20,6 +21,7 @@ export class Container {
             case 'live': return new LiveConfig();
             case 'test': return new TestConfig();
             case 'sid': return new SidConfig();
+            case 'stage': return new StageConfig();
             default: return new DevConfig();
         }
     }
