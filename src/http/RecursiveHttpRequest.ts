@@ -23,7 +23,7 @@ export class RecursiveHttpRequest {
             return Promise.resolve();
         }
 
-        let headersWithBlacklist = this.headers;
+        const headersWithBlacklist = this.headers;
         headersWithBlacklist['x-links-blacklist'] = JSON.stringify(blacklist);
         const item = await this.proxy.get(uri, headersWithBlacklist);
 
