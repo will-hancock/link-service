@@ -1,9 +1,9 @@
-import {RecursiveHttpRequest, UriObjectMap} from './RecursiveHttpRequest';
-import {ProxyGateway} from '../proxy/ProxyGateway';
-import {Logger} from '../logger/Logger';
+import { RecursiveHttpRequest, UriObjectMap } from './RecursiveHttpRequest';
+import { ProxyGateway } from '../proxy/ProxyGateway';
+import { Logger } from '../logger/Logger';
 
 /**
- * The CachedHttpClient will send a RecursiveHttpRequest on to the ProxyGateway, waiting until every link has been
+ * The CachedHttpClient will send a RecursiveHttpRequest on to the ProxyGateway, waiting until every link hasInCache been
  * resolved before giving the response.
  */
 export class CachedHttpClient {
@@ -17,7 +17,7 @@ export class CachedHttpClient {
      */
     public async get(req: Request): Promise<Response> {
         this.logger.debug(req);
-
+        console.log('got request with links: ' + JSON.stringify(req.links) + ' and blacklist: ' +  JSON.stringify(req.blacklist));
         const result = new RecursiveHttpRequest(this.proxy, req.headers);
 
         await Promise.all(req.links.map(uri => result.resolve(uri, req.blacklist)));

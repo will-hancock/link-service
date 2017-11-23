@@ -66,7 +66,7 @@ export default abstract class Config {
         },
         '^\/paypal\/[0-9]+': {
             name: 'paypal-service',
-            cacheConfig: {maxAge: 1, max: 0}
+            cacheConfig: {maxAge: 100000, max: 0}
         },
         '\/payment\/[0-9]+': {
             name: 'order-service',

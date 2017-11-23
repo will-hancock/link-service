@@ -1,5 +1,5 @@
-import {Headers} from './CachedHttpClient';
-import {ProxyGateway} from '../proxy/ProxyGateway';
+import { Headers } from './CachedHttpClient';
+import { ProxyGateway } from '../proxy/ProxyGateway';
 
 /**
  * The RecursiveHttpRequest will resolve any URI given to it, scanning the result for more URI's to resolve and storing
@@ -23,7 +23,9 @@ export class RecursiveHttpRequest {
             return Promise.resolve();
         }
 
-        const item = await this.proxy.get(uri, this.headers);
+        let headersWithBlacklist = this.headers;
+        headersWithBlacklist['x-links-blacklist'] = JSON.stringify(blacklist);
+        const item = await this.proxy.get(uri, headersWithBlacklist);
 
         this.links[uri] = item;
 
@@ -36,9 +38,21 @@ export class RecursiveHttpRequest {
     private async resolveNestedLinks(item: Object, blacklist: string[]): Promise<void> {
         for (const key in item) {
             if (typeof item[key] === 'string' && // check value is a string
-                /^\/[a-zA-Z-]+\//.test(item[key]) && // see if it looks like a URI
-                blacklist.indexOf(item[key]) === -1) { // make sure it's not blacklisted
-                await this.resolve(item[key], blacklist);
+                /^\/[a-zA-Z-]+\//.test(item[key]) // see if it looks like a URI)
+            ) {
+
+                if (blacklist.indexOf(item[key]) !== -1) { // if it's blackisted
+                    console.log('found blacklisted item: ' + (item[key]));
+// const x = <string>this.headers['x-tenant'] + item[key];
+// console.log('is it in proxy? (' + x + ') ' + this.proxy.hasInCache(item[key], <string>this.headers['x-tenant']));
+// console.log('proxy is: ' + (this.proxy.getProxy(item[key]).regex));
+
+                    if (this.proxy.hasInCache(item[key], <string>this.headers['x-tenant'])) {
+                        this.links[item[key]] = this.proxy.get(item[key], this.headers);
+                    }
+                } else {
+                    await this.resolve(item[key], blacklist);
+                }
             }
             else if (typeof item[key] === 'object' && item[key] !== null) {
                 await this.resolveNestedLinks(item[key], blacklist);

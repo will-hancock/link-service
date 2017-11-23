@@ -1,6 +1,6 @@
 import * as Bluebird from 'bluebird';
-import {Headers} from '../http/CachedHttpClient';
-import {Proxy} from './Proxy';
+import { Headers } from '../http/CachedHttpClient';
+import { Proxy } from './Proxy';
 
 /**
  * The ProxyGateway maintains a list of proxy rules, given a URI it will find the appropriate proxy and use it
@@ -20,14 +20,24 @@ export class ProxyGateway {
         return this.getProxy(uri).get(uri, headers);
     }
 
+
+    public hasInCache(uri: string, tenant: string): boolean {
+        return this.getProxy(uri).has(tenant + uri);
+    }
+
     /**
      * Cache the given item in the correct proxy cache
      */
     public cacheItem(uri: string, tenant: string, item: object): void {
-        return this.getProxy(uri).cacheItem(uri, tenant, item);
+        const p = this.getProxy(uri);
+        const x = p.cacheItem(uri, tenant, item);
+        // console.log('caching item: ' + tenant + uri);
+        // console.log('is it there? ( ' + tenant + uri + ') ' + this.getProxy(uri).has(tenant + uri));
+        // console.log('proxy is: ' + (p.regex));
+        return x;
     }
 
-    private getProxy(uri: string): Proxy {
+    public getProxy(uri: string): Proxy {
         const proxy = this.proxies.find(_ => _.matches(uri));
 
         if (!proxy) {

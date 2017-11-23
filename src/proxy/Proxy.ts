@@ -12,8 +12,8 @@ import {Headers} from '../http/CachedHttpClient';
  */
 export class Proxy extends EventEmitter {
 
-    constructor(private readonly baseUrl: string,
-                private readonly regex: RegExp,
+    constructor(public readonly baseUrl: string,
+                public readonly regex: RegExp,
                 private readonly cache: Cache<string, object>,
                 private readonly logger: Logger) {
         super();
@@ -37,6 +37,10 @@ export class Proxy extends EventEmitter {
             some: item => Bluebird.resolve(item),
             none: () => this.getViaHttp(uri, headers)
         });
+    }
+
+    public has(uri: string):boolean {
+        return this.cache.has(uri);
     }
 
     private getViaHttp(uri: string, headers: Headers): Bluebird<object> {
