@@ -151,6 +151,14 @@ export default abstract class Config {
         '\/passenger\/[0-9]+': {
             name: 'order-service',
             cacheConfig: {maxAge: this.defaultMaxAge, max: 1000}
+        },
+        '/tbo-user/[0-9]+': {
+            name: 'customer-service',
+            cacheConfig: {maxAge: this.defaultMaxAge, max: 1000}
+        },
+        '/user/[0-9]+': {
+            name: 'customer-service',
+            cacheConfig: {maxAge: this.defaultMaxAge, max: 1000}
         }
     };
 
