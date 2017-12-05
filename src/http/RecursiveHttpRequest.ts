@@ -25,7 +25,7 @@ export class RecursiveHttpRequest {
 
         /* @todo - "CODE of shame" hotfix until we solve CORE-855 */
         if (/^\/(tbo-)?user\/[0-9]+$/.test(uri)) {
-            this.links[uri] = [];
+            this.links[uri] = {};
             return Promise.resolve();
         }
 
