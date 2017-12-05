@@ -17,7 +17,7 @@ export class CachedHttpClient {
      */
     public async get(req: Request): Promise<Response> {
         this.logger.debug(req);
-
+        console.log('got request with links: ' + JSON.stringify(req.links) + ' and blacklist: ' +  JSON.stringify(req.blacklist));
         const result = new RecursiveHttpRequest(this.proxy, req.headers);
 
         await Promise.all(req.links.map(uri => result.resolve(uri, req.blacklist)));

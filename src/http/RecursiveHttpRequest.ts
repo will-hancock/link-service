@@ -1,5 +1,5 @@
-import {Headers} from './CachedHttpClient';
-import {ProxyGateway} from '../proxy/ProxyGateway';
+import { Headers } from './CachedHttpClient';
+import { ProxyGateway } from '../proxy/ProxyGateway';
 
 /**
  * The RecursiveHttpRequest will resolve any URI given to it, scanning the result for more URI's to resolve and storing
@@ -20,6 +20,12 @@ export class RecursiveHttpRequest {
      */
     public async resolve(uri: string, blacklist: string[]): Promise<void> {
         if (this.links[uri]) {
+            return Promise.resolve();
+        }
+
+        /* @todo - "CODE of shame" hotfix until we solve CORE-855 */
+        if (/^\/(tbo-)?user\/[0-9]+$/.test(uri)) {
+            this.links[uri] = [];
             return Promise.resolve();
         }
 
