@@ -9,7 +9,7 @@ import {Logger} from '../logger/Logger';
 export default class KoaService {
 
     private static readonly VALID_HEADERS = [
-        'x-access-token', 'x-auth-token', 'x-env', 'x-tenant', 'user-agent', 'accept', 'accept-encoding'
+        'x-access-token', 'x-auth-token', 'x-env', 'x-tenant', 'user-agent', 'accept', 'accept-encoding', 'x-token-data'
     ];
 
     constructor(private readonly httpClient: CachedHttpClient,
