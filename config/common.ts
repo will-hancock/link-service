@@ -154,11 +154,11 @@ export default abstract class Config {
         },
         '/tbo-user/[0-9]+': {
             name: 'customer-service',
-            cacheConfig: {maxAge: this.defaultMaxAge, max: 1000}
+            cacheConfig: {maxAge: 1, max: 0}
         },
         '/user/[0-9]+': {
             name: 'customer-service',
-            cacheConfig: {maxAge: this.defaultMaxAge, max: 1000}
+            cacheConfig: {maxAge: 1, max: 0}
         }
     };
 

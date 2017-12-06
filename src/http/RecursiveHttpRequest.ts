@@ -23,12 +23,6 @@ export class RecursiveHttpRequest {
             return Promise.resolve();
         }
 
-        /* @todo - "CODE of shame" hotfix until we solve CORE-855 */
-        if (/^\/(tbo-)?user\/[0-9]+$/.test(uri)) {
-            this.links[uri] = {};
-            return Promise.resolve();
-        }
-
         const headersWithBlacklist = this.headers;
         headersWithBlacklist['x-links-blacklist'] = JSON.stringify(blacklist);
         const item = await this.proxy.get(uri, headersWithBlacklist);
