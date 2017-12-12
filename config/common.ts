@@ -52,6 +52,14 @@ export default abstract class Config {
             name: 'ride-service',
             cacheConfig: {maxAge: this.defaultMaxAge, max: 200}
         },
+        '^\/molecule\/journey\/[a-z0-9]{32}': {
+            name: 'molecule',
+            cacheConfig: {maxAge: 1, max: 0}
+        },
+        '^\/molecule\/fare-option\/[a-z0-9\-]{36}': {
+            name: 'molecule',
+            cacheConfig: {maxAge: 1, max: 0}
+        },
         '^\/delivery\/[a-zA-Z\-]+': {
             name: 'delivery-service',
             cacheConfig: {maxAge: this.defaultMaxAge, max: 200}
@@ -152,16 +160,14 @@ export default abstract class Config {
             name: 'order-service',
             cacheConfig: {maxAge: this.defaultMaxAge, max: 1000}
         },
-        '/tbo-user/[0-9]+': {
+        '\/tbo-user\/[0-9]+': {
             name: 'customer-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
-        '/user/[0-9]+': {
+        '\/user\/[0-9]+': {
             name: 'customer-service',
             cacheConfig: {maxAge: 1, max: 0}
         }
     };
 
 }
-
-
