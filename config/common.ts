@@ -60,6 +60,10 @@ export default abstract class Config {
             name: 'molecule',
             cacheConfig: {maxAge: this.defaultMaxAge, max: 200}
         },
+        '^\/molecule\/fare\/[a-z0-9\-]+': {
+            name: 'molecule',
+            cacheConfig: {maxAge: this.defaultMaxAge, max: 200}
+        },
         '^\/molecule\/leg\/[a-z0-9\-]{36}': {
             name: 'molecule',
             cacheConfig: {maxAge: this.defaultMaxAge, max: 200}
