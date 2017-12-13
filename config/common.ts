@@ -60,6 +60,14 @@ export default abstract class Config {
             name: 'molecule',
             cacheConfig: {maxAge: 1, max: 0}
         },
+        '^\/molecule\/leg\/[a-z0-9\-]{36}': {
+            name: 'molecule',
+            cacheConfig: {maxAge: 1, max: 0}
+        },
+        '^\/molecule\/service\/[A-Za-z0-9]+\/[0-9]{4}\-[0-9]{2}\-[0-9]{2}': {
+            name: 'molecule',
+            cacheConfig: {maxAge: 1, max: 0}
+        },
         '^\/delivery\/[a-zA-Z\-]+': {
             name: 'delivery-service',
             cacheConfig: {maxAge: this.defaultMaxAge, max: 200}
@@ -144,7 +152,7 @@ export default abstract class Config {
             name: 'order-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
-        '\/service\/[A-Za-z0-9]+\/[0-9]{4}\-[0-9]{2}\-[0-9]{2}': {
+        '^\/service\/[A-Za-z0-9]+\/[0-9]{4}\-[0-9]{2}\-[0-9]{2}': {
             name: 'order-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
