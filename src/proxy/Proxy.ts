@@ -39,6 +39,13 @@ export class Proxy extends EventEmitter {
         });
     }
 
+    /**
+     * This method will attempt to del the given URI from the cache.
+     */
+    public del(uri: string) {
+        this.cache.del(uri);
+    }
+
     private getViaHttp(uri: string, headers: Headers): Bluebird<object> {
         this.logger.info(`Cache miss. Sending request to ${this.baseUrl + uri}`);
 
