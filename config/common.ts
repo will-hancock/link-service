@@ -54,19 +54,19 @@ export default abstract class Config {
         },
         '^\/molecule\/journey\/[a-z0-9]{32}': {
             name: 'molecule',
-            cacheConfig: {maxAge: 1, max: 0}
+            cacheConfig: {maxAge: this.defaultMaxAge, max: 200}
         },
         '^\/molecule\/fare-option\/[a-z0-9\-]{36}': {
             name: 'molecule',
-            cacheConfig: {maxAge: 1, max: 0}
+            cacheConfig: {maxAge: this.defaultMaxAge, max: 200}
         },
         '^\/molecule\/leg\/[a-z0-9\-]{36}': {
             name: 'molecule',
-            cacheConfig: {maxAge: 1, max: 0}
+            cacheConfig: {maxAge: this.defaultMaxAge, max: 200}
         },
         '^\/molecule\/service\/[A-Za-z0-9]+\/[0-9]{4}\-[0-9]{2}\-[0-9]{2}': {
             name: 'molecule',
-            cacheConfig: {maxAge: 1, max: 0}
+            cacheConfig: {maxAge: this.defaultMaxAge, max: 200}
         },
         '^\/delivery\/[a-zA-Z\-]+': {
             name: 'delivery-service',
@@ -84,71 +84,71 @@ export default abstract class Config {
             name: 'paypal-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
-        '\/payment\/[0-9]+': {
+        '^\/payment\/[0-9]+': {
             name: 'order-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
-        '\/st-card-payment\/[0-9]+': {
+        '^\/st-card-payment\/[0-9]+': {
             name: 'secure-trading-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
-        '\/order\/[0-9]+': {
+        '^\/order\/[0-9]+': {
             name: 'order-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
-        '\/trip\/[0-9]+': {
+        '^\/trip\/[0-9]+': {
             name: 'order-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
-        '\/journey\/[0-9]+': {
+        '^\/journey\/[0-9]+': {
             name: 'order-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
-        '\/ticket\/[0-9]+': {
+        '^\/ticket\/[0-9]+': {
             name: 'order-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
-        '\/supplement\/[0-9]+': {
+        '^\/supplement\/[0-9]+': {
             name: 'order-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
-        '\/card-payment\/[0-9]+': {
+        '^\/card-payment\/[0-9]+': {
             name: 'order-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
-        '\/fare\/[0-9]+': {
+        '^\/fare\/[0-9]+': {
             name: 'order-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
-        '\/leg\/[0-9]+': {
+        '^\/leg\/[0-9]+': {
             name: 'order-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
-        '\/reservation\/[A-Za-z0-9]+': {
+        '^\/reservation\/[A-Za-z0-9]+': {
             name: 'order-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
-        '\/seat-reservation\/[0-9]+': {
+        '^\/seat-reservation\/[0-9]+': {
             name: 'order-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
-        '\/sundry\/[0-9]+': {
+        '^\/sundry\/[0-9]+': {
             name: 'order-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
-        '\/sundry-type\/[0-9]+': {
+        '^\/sundry-type\/[0-9]+': {
             name: 'order-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
-        '\/toc\/[A-Za-z0-9]+': {
+        '^\/toc\/[A-Za-z0-9]+': {
             name: 'order-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
-        '\/voucher-payment\/[0-9]+': {
+        '^\/voucher-payment\/[0-9]+': {
             name: 'order-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
-        '\/warrant-payment\/[0-9]+': {
+        '^\/warrant-payment\/[0-9]+': {
             name: 'order-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
@@ -156,23 +156,23 @@ export default abstract class Config {
             name: 'order-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
-        '\/address\/[0-9]+': {
+        '^\/address\/[0-9]+': {
             name: 'customer-service',
             cacheConfig: {maxAge: this.defaultMaxAge, max: 0}
         },
-        '\/customer\/[0-9]+': {
+        '^\/customer\/[0-9]+': {
             name: 'customer-service',
             cacheConfig: {maxAge: this.defaultMaxAge, max: 0}
         },
-        '\/passenger\/[0-9]+': {
+        '^\/passenger\/[0-9]+': {
             name: 'order-service',
             cacheConfig: {maxAge: this.defaultMaxAge, max: 1000}
         },
-        '\/tbo-user\/[0-9]+': {
+        '^\/tbo-user\/[0-9]+': {
             name: 'customer-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
-        '\/user\/[0-9]+': {
+        '^\/user\/[0-9]+': {
             name: 'customer-service',
             cacheConfig: {maxAge: 1, max: 0}
         }
