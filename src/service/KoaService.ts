@@ -16,8 +16,7 @@ export default class KoaService {
         'x-tenant',
         'user-agent',
         'accept',
-        'accept-encoding',
-        'x-token-data'
+        'accept-encoding'
     ];
 
     constructor(private readonly httpClient: CachedHttpClient,
