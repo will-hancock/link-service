@@ -1,15 +1,23 @@
 import * as Koa from 'koa';
-import {Context} from 'koa';
+import { Context } from 'koa';
 import * as compress from 'koa-compress';
 import * as responseTime from 'koa-response-time';
-import {StatusCodeError} from 'request-promise/errors';
-import {CachedHttpClient, Request} from '../http/CachedHttpClient';
-import {Logger} from '../logger/Logger';
+import { StatusCodeError } from 'request-promise/errors';
+import { CachedHttpClient, Request } from '../http/CachedHttpClient';
+import { Logger } from '../logger/Logger';
 
 export default class KoaService {
 
     private static readonly VALID_HEADERS = [
-        'x-access-token', 'x-auth-token', 'x-env', 'x-tenant', 'user-agent', 'accept', 'accept-encoding', 'x-token-data'
+        'x-access-token',
+        'x-auth-token',
+        'x-token-data',
+        'x-env',
+        'x-tenant',
+        'user-agent',
+        'accept',
+        'accept-encoding',
+        'x-token-data'
     ];
 
     constructor(private readonly httpClient: CachedHttpClient,
@@ -72,5 +80,5 @@ export default class KoaService {
 }
 
 function pick(item: object, props: string[]) {
-    return Object.assign({}, ...props.map(prop => ({[prop]: item[prop]})));
+    return Object.assign({}, ...props.map(prop => ({ [prop]: item[prop] })));
 }
