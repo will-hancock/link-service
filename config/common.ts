@@ -153,7 +153,7 @@ export default abstract class Config {
             cacheConfig: {maxAge: 1, max: 0}
         },
         '^\/warrant-payment\/[0-9]+': {
-            name: 'order-service',
+            name: 'warrant-service',
             cacheConfig: {maxAge: 1, max: 0}
         },
         '^\/service\/[A-Za-z0-9]+\/[0-9]{4}\-[0-9]{2}\-[0-9]{2}': {
